@@ -147,5 +147,5 @@ $
 
 
 ## Authors
-Edwin Orioki Kenyansa
-Allan Kertich
+- Edwin Orioki Kenyansa
+- Allan Kertich
