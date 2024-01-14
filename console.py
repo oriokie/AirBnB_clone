@@ -1,5 +1,8 @@
-#!/usr/bin/env python3
-
+#!/usr/bin/python3
+"""
+console.py is the entry point of the command
+interpreter
+"""
 import cmd
 
 
