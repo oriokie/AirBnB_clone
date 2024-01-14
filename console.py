@@ -25,7 +25,7 @@ class HBNBCommand(cmd.Cmd):
         """
         print("Quit command to exit the program.")
 
-    def help_eof(self):
+    def help_EOF(self):
         """
         Help Method for end of file
 
@@ -35,14 +35,6 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         """Do nothing on empty input."""
         pass
-
-    def do_create(self, args):
-        """Creates a new instance of BaseModel
-        and saves it to the JSON file,
-        prints the id. Ex: $ create BaseModel """
-        if not args:
-            print("** class name missing **")
-            return
 
 
 if __name__ == '__main__':
