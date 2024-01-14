@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 
 import cmd
-from models.base_model import BaseModel
-from models import storage
+
 
 class HBNBCommand(cmd.Cmd):
     """HBNB command interpreter."""
@@ -25,7 +24,7 @@ class HBNBCommand(cmd.Cmd):
 
         """
         print("Quit command to exit the program.")
-    
+
     def help_eof(self):
         """
         Help Method for end of file
@@ -42,9 +41,8 @@ class HBNBCommand(cmd.Cmd):
         and saves it to the JSON file,
         prints the id. Ex: $ create BaseModel """
         if not args:
-            print ("** class name missing **")
+            print("** class name missing **")
             return
-
 
 
 if __name__ == '__main__':
