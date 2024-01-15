@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-This is the base model
+This is the base model that servers as the base
+class for all other classes
 
 """
 from datetime import datetime

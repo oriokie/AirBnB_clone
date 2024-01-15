@@ -23,6 +23,18 @@ class HBNBCommand(cmd.Cmd):
         """Do nothing on empty input."""
         pass
 
+    def do_create(self, args):
+        """
+        Create a new instance of BaseModel, saves it
+        to the JSON file and prints the id
+        """
+        if not args:
+            print("** class name missing **")
+            return
+        new_instance = eval(args)()
+        new_instance.save()
+        print(new_instance.id)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
