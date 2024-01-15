@@ -57,6 +57,7 @@ class TestBaseModel(unittest.TestCase):
         new_updated_at = self.base.updated_at
         self.assertIsNotNone(new_updated_at)
         self.assertNotEqual(prev_updated_at, new_updated_at)
+        self.assertIsInstance(self.base.updated_at, datetime)
 
     def test_to_dict(self):
         """
