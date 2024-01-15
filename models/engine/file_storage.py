@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 import json
-'''from models.base_model import BaseModel'''
+from models.base_model import BaseModel
 """
 This is the file storage Module
 """
 
 
-class FileStorage:
+class FileStorage():
     """
     This is the file storage class that serializes instances
     to a JSON file and deserializes JSON file to instances
@@ -38,8 +38,8 @@ class FileStorage:
         Serializes __objects to the JSON file
         """
         obj_dict = {}
-        for key, obj in self.__objects.items():
-            obj_dict[key] = obj.to_dict()
+        for obj_id, obj in self.__objects.items():
+            obj_dict[obj_id] = obj.to_dict()
 
         with open(self.__file_path, 'w', encoding="utf-8") as f:
             json.dump(obj_dict, f)
@@ -54,11 +54,8 @@ class FileStorage:
         try:
             with open(self.__file_path, 'r', encoding="utf-8") as file:
                 data = json.load(file)
-                for key, value in data.items():
-                    class_name, obj_id = key.split('.')
-                    if class_name in FileStorage.__cls__name:
-                        self.__objects[key] = self.__cls__name[
-                            class_name](**value)
-
+            for key, value in data.items():
+                self.__objects[key] = eval(
+                    value['__class__'])(**value)
         except Exception:
             pass
