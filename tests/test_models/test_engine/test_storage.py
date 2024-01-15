@@ -75,12 +75,16 @@ class TestFileStorage(unittest.TestCase):
         new_dict2 = sto.all()
         self.assertEqual(new_dict1, new_dict2)
 
-    def test_new_method_implementation(self):
-        """
-        Test new method implementation
-        """
-        sto = FileStorage()
-        self.assertTrue(callable(getattr(sto, 'new', None)), "Method 'new' is not implemented.")
+    def test_all_methods_implementation(self):
+        storage = FileStorage()
+
+        methods_to_check = ['all', 'new', 'save', 'reload']
+
+        for method_name in methods_to_check:
+            method = getattr(storage, method_name, None)
+            with self.subTest(method_name=method_name):
+                self.assertIsNotNone(method,
+                                     f"Method '{method_name}'not implemented.")
 
 
 if __name__ == '__main__':
