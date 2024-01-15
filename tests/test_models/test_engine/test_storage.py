@@ -10,10 +10,7 @@ class TestFileStorage(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
 
-        file_path = "file.json"
-        if os.path.exists(file_path):
-            os.remove(file_path)
-
+        cls.file_path = "file.json"
         # Clear the __objects dictionary
         FileStorage.__objects = {}
         cls.storage = FileStorage()
@@ -22,6 +19,8 @@ class TestFileStorage(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
+        if os.path.exists(cls.file_path):
+            os.remove(cls.file_path)
         all_objs = cls.storage.all()
         all_objs.clear()
         cls.storage.save()
@@ -59,6 +58,22 @@ class TestFileStorage(unittest.TestCase):
         key = f"{new_instance.__class__.__name__}.{new_instance.id}"
         self.assertIn(key, self.storage.all())
 
+    def test_save_method(self):
+        new_instance = BaseModel()
+        new_instance.save()
+        key = f"{new_instance.__class__.__name__}.{new_instance.id}"
+        self.assertIn(key, self.storage.all())
+
+    def test_storage_methods(self):
+        """Tests all the 'FileStorage' methods"""
+        sto = FileStorage()
+        obj = BaseModel()
+        sto.new(obj)
+        sto.save()
+        sto.reload()
+        new_dict1 = sto.all()
+        new_dict2 = sto.all()
+        self.assertEqual(new_dict1, new_dict2)
 
 if __name__ == '__main__':
     unittest.main()
