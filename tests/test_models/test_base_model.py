@@ -55,6 +55,7 @@ class TestBaseModel(unittest.TestCase):
         time.sleep(2)
         self.base.save()
         new_updated_at = self.base.updated_at
+        self.assertIsNotNone(new_updated_at)
         self.assertNotEqual(prev_updated_at, new_updated_at)
 
     def test_to_dict(self):
