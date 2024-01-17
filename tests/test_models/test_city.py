@@ -19,6 +19,7 @@ class TestCity(unittest.TestCase):
         cls.city_instance = City()
         cls.city_instance.name = "test"
         cls.city_instance.state_id = "test"
+        cls.city_instance2 = City()
 
     @classmethod
     def tearDownClass(cls):
@@ -59,6 +60,11 @@ class TestCity(unittest.TestCase):
         """ test inheritance """
         self.assertIsInstance(self.city_instance, BaseModel)
         self.assertIsInstance(self.city_instance, BaseModel)
+
+    def test_attributes(self):
+        """ test attributes """
+        self.assertIsNotNone(self.city_instance2.name)
+        self.assertIsNotNone(self.city_instance2.state_id)
 
 
 if __name__ == "__main__":
