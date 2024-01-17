@@ -102,6 +102,53 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
 
+    def do_all(self, args):
+        """
+        Prints all string representation of all
+        instances based or not on the class name
+        Ex: $ all BaseModel or $ all
+        """
+        cmd_args = args.split()
+        if not cmd_args or cmd_args[0] not in classes:
+            print([str(obj) for obj in models.storage.all().values()])
+        else:
+            print([str(obj) for obj in models.storage.all().values()
+                   if type(obj) == classes[cmd_args[0]]])
+
+    def do_update(self, args):
+        """
+        Updates an instance based on the class name
+        and id by adding or updating attribute
+        (save the change into the JSON file)
+
+        Args:
+            args (str): A string containing the class name and
+            id separated by a space. The remaining arguments are
+            key-value pairs separated by a space.
+        """
+        cmd_args = args.split()
+        if not cmd_args:
+            print("** class name missing **")
+            return
+        if cmd_args[0] in classes:
+            if len(cmd_args) > 1:
+                key = f"{cmd_args[0]}.{cmd_args[1]}"
+                if key in models.storage.all():
+                    if len(cmd_args) > 2:
+                        if len(cmd_args) > 3:
+                            setattr(models.storage.all()[key], cmd_args[2],
+                                    cmd_args[3])
+                        else:
+                            setattr(models.storage.all()[key], cmd_args[2])
+                    else:
+                        print("** attribute name missing **")
+                else:
+                    print("** no instance found **")
+            else:
+                print("** instance id missing **")
+        else:
+            print("** class doesn't exist **")
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
