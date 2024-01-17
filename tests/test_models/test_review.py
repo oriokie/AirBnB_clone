@@ -56,6 +56,9 @@ class TestReview(unittest.TestCase):
         self.assertEqual(type(self.a.place_id), str)
         self.assertEqual(type(self.a.user_id), str)
         self.assertEqual(type(self.a.text), str)
+        self.assertIsNotNone(self.b.place_id)
+        self.assertIsNotNone(self.b.user_id)
+        self.assertIsNotNone(self.b.text)
 
     def test_save(self):
         """
