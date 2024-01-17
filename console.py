@@ -101,32 +101,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** instance id missing **")
         else:
             print("** class doesn't exist **")
-    def do_all(self, arg):
-        """
-        Prints all string representation of all
-        instances based or not on the class name.
-
-        Args:
-            arg (str): The command-line argument
-
-        Example:
-            $ all BaseModel or $ all.
-        """
-        cmd_args = arg.split()
-        if not cmd_args or cmd_args[0] not in classes:
-            print("** class doesn't exist **")
-            return False
-        if cmd_args[0] in classes:
-            obj_dict = models.storage.all(classes[cmd_args[0]])
-        else:
-            obj_dict = models.storage.all()
-
-        obj_list = [str(obj_dict[key]) for key in obj_dict]
-
-        print("[", end="")
-        print(", ".join(obj_list), end="")
-        print("]")
-
+        
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
