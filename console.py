@@ -109,11 +109,13 @@ class HBNBCommand(cmd.Cmd):
         Ex: $ all BaseModel or $ all
         """
         cmd_args = args.split()
-        if not cmd_args or cmd_args[0] not in classes:
+        if not cmd_args or cmd_args[0] == 'all':
             print([str(obj) for obj in models.storage.all().values()])
-        else:
+        elif cmd_args[0] in classes:
             print([str(obj) for obj in models.storage.all().values()
                    if type(obj) == classes[cmd_args[0]]])
+        else:
+            print("** class doesn't exist **")
 
     def do_update(self, args):
         """
